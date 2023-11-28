@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-backend  # Sets Deployment name
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-backend
+  template:
+    metadata:
+      labels:
+        app: todo-backend
+    spec:
+      containers:
+        - name: todo-backend
+          image: public.ecr.aws/x7h1i1i2/todo-backend:latest # Sets Image
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 8080  # Exposes container port

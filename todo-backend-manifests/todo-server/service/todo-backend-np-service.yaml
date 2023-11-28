@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-backend # Sets service name
+  labels:
+    app: todo-backend # Labels and Selectors
+spec:
+  type: NodePort # Sets service type
+  ports:
+    - port: 8080 # Sets port to run the postgres application
+  selector:
+    app: todo-backend
