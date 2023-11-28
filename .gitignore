@@ -36,8 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 
-terraform/terraform/.terraform/
-terraform/terraform/.terraform.*
-terraform/terraform/terraform.tfstate
-terraform/terraform/.terraform.lock.hcl
-terraform/terraform/.terraform.tfstate.lock.info
+deployment/terraform/.terraform/
+deployment/terraform/.terraform.*
+deployment/terraform/terraform.tfstate
+deployment/terraform/.terraform.lock.hcl
+deployment/terraform/.terraform.tfstate.lock.info
