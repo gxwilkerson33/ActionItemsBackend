@@ -1,5 +1,5 @@
 resource "aws_iam_role" "nodes" {
-  name = "eks-node-group-nodes"
+  name = "todo-eks-node-group-nodes"
 
   assume_role_policy = jsonencode({
     Statement = [{
@@ -28,9 +28,14 @@ resource "aws_iam_role_policy_attachment" "nodes-AmazonEC2ContainerRegistryReadO
   role       = aws_iam_role.nodes.name
 }
 
-resource "aws_eks_node_group" "private-nodes" {
-  cluster_name    = aws_eks_cluster.demo.name
-  node_group_name = "private-nodes"
+resource "aws_iam_role_policy_attachment" "nodes-EbsCsiDriver" {
+  policy_arn = "arn:aws:iam::676802897789:policy/Amazon_EBS_CSI_Driver"
+  role       = aws_iam_role.nodes.name
+}
+
+resource "aws_eks_node_group" "public-nodes" {
+  cluster_name    = aws_eks_cluster.todo-app.name
+  node_group_name = "public-nodes"
   node_role_arn   = aws_iam_role.nodes.arn
 
   subnet_ids = [
@@ -38,11 +43,12 @@ resource "aws_eks_node_group" "private-nodes" {
     aws_subnet.private-us-east-1b.id
   ]
 
+
   capacity_type  = "ON_DEMAND"
   instance_types = ["t3.small"]
 
   scaling_config {
-    desired_size = 1
+    desired_size = 2
     max_size     = 5
     min_size     = 0
   }
@@ -50,6 +56,7 @@ resource "aws_eks_node_group" "private-nodes" {
   update_config {
     max_unavailable = 1
   }
+
 
   labels = {
     role = "general"
