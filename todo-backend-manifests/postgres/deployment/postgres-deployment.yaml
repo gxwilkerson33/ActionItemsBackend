@@ -22,6 +22,10 @@ spec:
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432  # Exposes container port
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "/bin/bash","-c","sleep 20 && PGPASSWORD=$POSTGRES_PASSWORD psql $POSTGRES_DB -U $POSTGRES_USER -c \'CREATE SCHEMA IF NOT EXISTS tododb;\'" ]
           envFrom:
             - configMapRef:
                 name: postgres-config
