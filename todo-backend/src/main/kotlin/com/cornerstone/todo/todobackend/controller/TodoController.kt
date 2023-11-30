@@ -2,7 +2,6 @@ package com.cornerstone.todo.todobackend.controller
 
 import com.cornerstone.todo.todobackend.bean.TodoItem
 import com.cornerstone.todo.todobackend.repository.TodoRepository
-import org.springframework.data.jpa.repository.Modifying
 import org.springframework.web.bind.annotation.*
 
 @RestController

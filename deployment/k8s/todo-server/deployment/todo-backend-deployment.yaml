@@ -18,3 +18,7 @@ spec:
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8080  # Exposes container port
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "/bin/bash","-c","sleep 120" ]

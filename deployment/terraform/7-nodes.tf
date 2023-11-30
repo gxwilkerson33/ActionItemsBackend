@@ -33,9 +33,9 @@ resource "aws_iam_role_policy_attachment" "nodes-EbsCsiDriver" {
   role       = aws_iam_role.nodes.name
 }
 
-resource "aws_eks_node_group" "public-nodes" {
+resource "aws_eks_node_group" "private-nodes" {
   cluster_name    = aws_eks_cluster.todo-app.name
-  node_group_name = "public-nodes"
+  node_group_name = "private-nodes"
   node_role_arn   = aws_iam_role.nodes.arn
 
   subnet_ids = [
