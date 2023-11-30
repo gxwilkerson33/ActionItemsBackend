@@ -125,8 +125,8 @@ You now have a todo list server running in aws - get, post, delete. do with it w
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
+- [ ] Add support for multiple users
+- [ ] Ensure and document security 
 - [ ] Feature 3
     - [ ] Nested Feature
 
