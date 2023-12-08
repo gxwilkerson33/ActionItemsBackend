@@ -2,7 +2,7 @@
 
 echo $PWD
 cd deployment/terraform/ || exit
-terraform apply
+terraform apply -auto-approve
 cd ../../ || exit
 aws eks update-kubeconfig --region us-east-1 --name todo-app
 kubectl apply -R -f deployment/k8s/

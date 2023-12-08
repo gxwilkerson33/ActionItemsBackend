@@ -3,7 +3,7 @@
 
 kubectl delete all --all
 cd deployment/terraform/ || exit
-terraform destroy
+terraform destroy -auto-approve
 
 echo All Resources deleted
 
