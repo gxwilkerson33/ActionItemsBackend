@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
 	id("org.springframework.boot") version "3.2.0"
@@ -16,6 +17,10 @@ java {
 
 repositories {
 	mavenCentral()
+}
+
+tasks.named<BootBuildImage>("bootBuildImage") {
+	imageName.set("todo-server:latest")
 }
 
 dependencies {

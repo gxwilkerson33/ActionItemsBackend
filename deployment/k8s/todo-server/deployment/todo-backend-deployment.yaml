@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: todo-backend
-          image: public.ecr.aws/x7h1i1i2/todo-backend:latest # Sets Image
+          image: 676802897789.dkr.ecr.us-east-1.amazonaws.com/todo-server:latest # Sets Image
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8080  # Exposes container port

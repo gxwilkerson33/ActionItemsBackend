@@ -7,9 +7,8 @@ data class TodoItem(
     @Id
     @GeneratedValue
     val id: Int = -1,
-//        todo: convert this to Task object
     var task: String = "",
-    @ManyToOne
-    @JoinColumn(name = "id" )
-    var user: User = User()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private val user: TodoUser = TodoUser()
 )

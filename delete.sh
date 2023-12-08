@@ -6,7 +6,3 @@ cd deployment/terraform/ || exit
 terraform destroy -auto-approve
 
 echo All Resources deleted
-
-kubectl get pods -o wide
-kubectl get nodes -o wide
-kubectl get svc -o wide

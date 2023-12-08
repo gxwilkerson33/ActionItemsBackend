@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
 
 echo $PWD
+
+cd todo-backend || exit
+#build and push new image
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 676802897789.dkr.ecr.us-east-1.amazonaws.com
+./gradlew bootBuildImage
+docker tag todo-server:latest 676802897789.dkr.ecr.us-east-1.amazonaws.com/todo-server:latest
+docker push 676802897789.dkr.ecr.us-east-1.amazonaws.com/todo-server:latest
+
+cd ../ || exit
+#spin up aws infrastructure
 cd deployment/terraform/ || exit
 terraform apply -auto-approve
 cd ../../ || exit
+
+#configure and apply kubernetes resources
 aws eks update-kubeconfig --region us-east-1 --name todo-app
 kubectl apply -R -f deployment/k8s/
 
