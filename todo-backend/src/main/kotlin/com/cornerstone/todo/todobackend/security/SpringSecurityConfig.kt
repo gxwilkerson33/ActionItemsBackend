@@ -17,7 +17,7 @@ class SpringSecurityConfig {
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
 
         http.authorizeHttpRequests { auth -> auth.requestMatchers("/items","/items/*").authenticated() }
-            .authorizeHttpRequests { auth -> auth.requestMatchers("/register","/allItemsDebug").permitAll() }
+            .authorizeHttpRequests { auth -> auth.requestMatchers("/register","/allItemsDebug","/allUsersDebug").permitAll() }
             .httpBasic(Customizer.withDefaults())
         .csrf().disable()
 
