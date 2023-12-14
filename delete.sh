@@ -2,6 +2,7 @@
 
 
 kubectl delete all --all
+kubectl delete hpa --all
 cd deployment/terraform/ || exit
 terraform destroy -auto-approve
 

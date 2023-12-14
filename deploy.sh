@@ -25,4 +25,9 @@ kubectl get pods -o wide
 kubectl get nodes -o wide
 kubectl get svc -o wide
 
+sleep 300
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl autoscale deployment todo-backend --cpu-percent=75 --min=1 --max=3
+
 

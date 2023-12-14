@@ -22,3 +22,8 @@ spec:
             postStart:
               exec:
                 command: [ "/bin/bash","-c","sleep 120" ]
+          resources:
+            requests:
+              cpu: "250m"
+            limits:
+              cpu: "500m"

@@ -16,6 +16,11 @@ class TodoController(
         return todoRepository.findByUserId(userId)
     }
 
+    @GetMapping("/allItemsDebug")
+    fun getAllDebug():List<TodoItem>{
+        return todoRepository.findAll()
+    }
+
     @PostMapping("/items")
     fun addItem(@RequestBody item: TodoItem):ResponseEntity<Int>{
         val savedItem = todoRepository.save(item)
@@ -24,12 +29,11 @@ class TodoController(
 
     @DeleteMapping("/items/{id}")
     fun deleteItem(@PathVariable("id") id : Int):ResponseEntity<String>{
-        println("test")
-        try {
+        return try {
             todoRepository.deleteById(id)
-            return ResponseEntity.status(HttpStatus.OK).build()
+            ResponseEntity.status(HttpStatus.OK).build()
         }catch (e:Exception){
-            return ResponseEntity.status(HttpStatus.OK).body(e.message)
+            ResponseEntity.status(HttpStatus.OK).body(e.message)
         }
     }
 
