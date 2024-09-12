@@ -72,6 +72,10 @@ Some blurb about running the script to deploy an instance of this app on your ow
 
 You will need the below tools installed and configured
 
+* docker  
+```sh
+  brew install docker
+  ```
 
 * kubectl
   ```sh

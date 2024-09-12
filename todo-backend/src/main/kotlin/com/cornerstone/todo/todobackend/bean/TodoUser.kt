@@ -6,12 +6,11 @@ import jakarta.persistence.*
 data class TodoUser(
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
+    @Column(name = "userId")
     val id:Int = -1,
     var email:String = "",
     var password:String = "",
     var role:String = "",
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId")
     var items:List<TodoItem> = listOf()
 )

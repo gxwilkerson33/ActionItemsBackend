@@ -8,7 +8,5 @@ data class TodoItem(
     @GeneratedValue
     val id: Int = -1,
     var task: String = "",
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private val user: TodoUser = TodoUser()
+    private val userId: Int = -1
 )

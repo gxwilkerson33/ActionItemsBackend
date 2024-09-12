@@ -29,7 +29,7 @@ resource "aws_iam_role_policy_attachment" "nodes-AmazonEC2ContainerRegistryReadO
 }
 
 resource "aws_iam_role_policy_attachment" "nodes-EbsCsiDriver" {
-  policy_arn = "arn:aws:iam::676802897789:policy/Amazon_EBS_CSI_Driver"
+  policy_arn = "arn:aws:iam::585008070670:policy/Amazon_EBS_CSI_Driver"
   role       = aws_iam_role.nodes.name
 }
 
