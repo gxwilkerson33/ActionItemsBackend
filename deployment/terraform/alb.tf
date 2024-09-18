@@ -20,7 +20,7 @@ resource "aws_alb" "action-items-alb" {
 
   subnets = [aws_subnet.public-us-east-1a.id, aws_subnet.public-us-east-1b.id]
 
-  security_groups = [ aws_security_group.ingress_all.id, aws_security_group.egress_all.id ]
+  security_groups = [ aws_security_group.alb_sg.id ]
   # security_groups = [aws_security_group.alb_sg.id]
 
   depends_on = [aws_internet_gateway.igw]
@@ -36,6 +36,3 @@ resource "aws_alb_listener" "action-items-http" {
   }
 }
 
-output "alb_url" {
-  value = "http://${aws_alb.action-items-alb.dns_name}"
-}

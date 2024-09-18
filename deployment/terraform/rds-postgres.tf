@@ -10,7 +10,7 @@ resource "aws_db_instance" "action_items_postgres_db" {
   password               = data.aws_secretsmanager_secret_version.password.secret_string
   skip_final_snapshot    = true
   publicly_accessible    = true
-  vpc_security_group_ids = [aws_security_group.ingress_all.id, aws_security_group.egress_all.id]
+  vpc_security_group_ids = [aws_security_group.postgres_sg.id]
   db_subnet_group_name   = aws_db_subnet_group.action_items_db_subnet_group.id
 
   depends_on = [ aws_secretsmanager_secret.password ]
@@ -20,26 +20,3 @@ resource "aws_db_subnet_group" "action_items_db_subnet_group" {
   name       = "action-items-db-subnet-group"
   subnet_ids = [aws_subnet.private-us-east-1a.id, aws_subnet.private-us-east-1b.id]
 }
-
-output "db_instance_endpoint" {
-  value = aws_db_instance.action_items_postgres_db.endpoint
-}
-
-output "db_instance_address" {
-  value = aws_db_instance.action_items_postgres_db.address
-}
-
-
-
-
-
-data "aws_secretsmanager_secret" "password" {
-  name = "action-items-db-password"
-  depends_on = [ aws_secretsmanager_secret.password,aws_secretsmanager_secret_version.password ]
-
-}
-
-data "aws_secretsmanager_secret_version" "password" {
-  secret_id = data.aws_secretsmanager_secret.password.id
-}
-

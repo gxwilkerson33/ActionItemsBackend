@@ -2,6 +2,7 @@ resource "aws_ecs_cluster" "action_items_cluster" {
   name = "action-items-cluster"
 
 }
+
 resource "aws_ecs_service" "action_items_service" {
   name            = "action-items-service"
   task_definition = aws_ecs_task_definition.action_items.arn
@@ -9,7 +10,7 @@ resource "aws_ecs_service" "action_items_service" {
   cluster         = aws_ecs_cluster.action_items_cluster.id
   network_configuration {
     assign_public_ip = false
-    security_groups  = [aws_security_group.ingress_all.id, aws_security_group.egress_all.id]
+    security_groups  = [aws_security_group.ecs_sg.id]
     subnets          = [aws_subnet.private-us-east-1a.id, aws_subnet.private-us-east-1b.id]
   }
 
@@ -70,23 +71,6 @@ resource "aws_iam_role" "action_items_task_execution_role" {
   assume_role_policy = data.aws_iam_policy_document.ecs_task_assume_role.json
 }
 
-
-data "aws_iam_policy_document" "ecs_task_assume_role" {
-  statement {
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      identifiers = ["ecs-tasks.amazonaws.com"]
-      type        = "Service"
-    }
-  }
-}
-
-# AWS provided
-data "aws_iam_policy" "ecs_task_execution_role" {
-  arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-}
-
 # Attach the above policy to the execution role.
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
   role       = aws_iam_role.action_items_task_execution_role.name
@@ -94,7 +78,4 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
 }
 
 
-resource "aws_cloudwatch_log_group" "action_items" {
-  name = "/ecs/action_items"
-}
 
