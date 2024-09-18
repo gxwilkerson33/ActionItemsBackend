@@ -9,7 +9,7 @@
 -->
 
 
-<h3 align="center">Cloud based Todo App</h3>
+<h3 align="center">Cloud based ActionItems App</h3>
   <p align="center">
     A simple web server. Deployed on AWS. The Hard Way
 
@@ -134,7 +134,7 @@ You now have a todo list server running in aws - get, post, delete. do with it w
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/gxwilkerson415/TodoApp/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/gxwilkerson415/ActionItemsApp/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -20,7 +20,7 @@ repositories {
 }
 
 tasks.named<BootBuildImage>("bootBuildImage") {
-	imageName.set("todo-server:latest")
+	imageName.set("action_items_server:latest")
 }
 
 dependencies {
@@ -43,7 +43,7 @@ dependencies {
 
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 
-	implementation("com.mysql:mysql-connector-j:8.0.33")
+
 }
 
 tasks.withType<KotlinCompile> {

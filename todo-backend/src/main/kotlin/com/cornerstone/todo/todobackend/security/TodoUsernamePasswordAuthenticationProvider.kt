@@ -1,6 +1,6 @@
 package com.cornerstone.todo.todobackend.security
 
-import com.cornerstone.todo.todobackend.repository.TodoUserRepository
+import com.cornerstone.todo.todobackend.repository.ActionItemsUserRepository
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -10,8 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
-class TodoUsernamePasswordAuthenticationProvider(
-    private val todoUserRepository: TodoUserRepository,
+class ActionItemsUsernamePasswordAuthenticationProvider(
+    private val todoUserRepository: ActionItemsUserRepository,
     private val passwordEncoder: PasswordEncoder
 ) : AuthenticationProvider {
 

@@ -3,7 +3,7 @@ package com.cornerstone.todo.todobackend.bean
 import jakarta.persistence.*
 
 @Entity
-data class TodoUser(
+data class ActionItemsUser(
     @Id
     @GeneratedValue
     @Column(name = "userId")
@@ -12,5 +12,5 @@ data class TodoUser(
     var password:String = "",
     var role:String = "",
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId")
-    var items:List<TodoItem> = listOf()
+    var items:List<ActionItem> = listOf()
 )

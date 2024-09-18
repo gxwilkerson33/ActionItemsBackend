@@ -1,9 +1,9 @@
 package com.cornerstone.todo.todobackend.repository
 
-import com.cornerstone.todo.todobackend.bean.TodoUser
+import com.cornerstone.todo.todobackend.bean.ActionItemsUser
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface TodoUserRepository : JpaRepository<TodoUser, Int> {
-    fun findByEmail(email: String): List<TodoUser>
+interface ActionItemsUserRepository : JpaRepository<ActionItemsUser, Int> {
+    fun findByEmail(email: String): List<ActionItemsUser>
 
 }

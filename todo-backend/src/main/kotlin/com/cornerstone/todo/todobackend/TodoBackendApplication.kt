@@ -5,8 +5,8 @@ import org.springframework.boot.runApplication
 
 
 @SpringBootApplication
-class TodoBackendApplication
+class ActionItemsBackendApplication
 
 fun main(args: Array<String>) {
-	runApplication<TodoBackendApplication>(*args)
+	runApplication<ActionItemsBackendApplication>(*args)
 }
