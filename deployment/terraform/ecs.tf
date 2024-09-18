@@ -9,7 +9,7 @@ resource "aws_ecs_service" "action_items_service" {
   cluster         = aws_ecs_cluster.action_items_cluster.id
   network_configuration {
     assign_public_ip = false
-    security_groups  = [ aws_security_group.ingress_all.id, aws_security_group.egress_all.id ]
+    security_groups  = [aws_security_group.ingress_all.id, aws_security_group.egress_all.id]
     subnets          = [aws_subnet.private-us-east-1a.id, aws_subnet.private-us-east-1b.id]
   }
 
@@ -34,7 +34,12 @@ resource "aws_ecs_task_definition" "action_items" {
           "containerPort": 8080
         }
       ],
-      
+      "environment": [
+        {"name": "DB_HOST", "value": "${aws_db_instance.action_items_postgres_db.address}"},
+        {"name": "DB_PORT", "value": "${aws_db_instance.action_items_postgres_db.port}"},
+        {"name": "DB_USER", "value": "postgres"},
+        {"name": "DB_PASS", "value": "${data.aws_secretsmanager_secret_version.password.secret_string}"}
+    ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -56,6 +61,8 @@ resource "aws_ecs_task_definition" "action_items" {
 
   # This is required for Fargate containers (more on this later).
   network_mode = "awsvpc"
+
+  depends_on = [aws_db_instance.action_items_postgres_db]
 }
 
 resource "aws_iam_role" "action_items_task_execution_role" {
@@ -90,3 +97,4 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
 resource "aws_cloudwatch_log_group" "action_items" {
   name = "/ecs/action_items"
 }
+
