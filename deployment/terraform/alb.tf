@@ -15,15 +15,14 @@ resource "aws_lb_target_group" "action_items" {
 
 resource "aws_alb" "action-items-alb" {
   name               = "action-items-alb"
-  internal           = false
+  internal           = true
   load_balancer_type = "application"
 
-  subnets = [aws_subnet.public-us-east-1a.id, aws_subnet.public-us-east-1b.id]
+  subnets = [aws_subnet.private-us-east-1a.id, aws_subnet.private-us-east-1b.id]
 
   security_groups = [ aws_security_group.alb_sg.id ]
-  # security_groups = [aws_security_group.alb_sg.id]
 
-  depends_on = [aws_internet_gateway.igw]
+   depends_on = [aws_internet_gateway.igw]
 }
 
 resource "aws_alb_listener" "action-items-http" {
@@ -35,4 +34,5 @@ resource "aws_alb_listener" "action-items-http" {
     target_group_arn = aws_lb_target_group.action_items.arn
   }
 }
+
 

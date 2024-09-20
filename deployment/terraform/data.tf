@@ -16,7 +16,7 @@ data "aws_iam_policy" "ecs_task_execution_role" {
 
 
 data "aws_secretsmanager_secret" "password" {
-  name = "action-items-db-password-new"
+  name = "action-items-db-password-${random_string.uuid.result}"
   depends_on = [ aws_secretsmanager_secret.password,aws_secretsmanager_secret_version.password ]
 
 }

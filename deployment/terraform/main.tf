@@ -12,7 +12,7 @@ terraform {
 }
 
 resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
   tags = {
     Name = "main"
@@ -43,5 +43,5 @@ resource "aws_nat_gateway" "nat" {
     Name = "nat"
   }
 
-  depends_on = [aws_internet_gateway.igw]
+   depends_on = [aws_internet_gateway.igw]
 }
